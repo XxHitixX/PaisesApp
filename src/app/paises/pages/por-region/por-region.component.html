@@ -1,0 +1,30 @@
+<h2>Buscar por región: <small> {{regionActiva | titlecase}} </small></h2>
+<hr>
+<h3>Selecciona una región</h3>
+<button *ngFor="let region of regiones" 
+class="btn btn-outline-primary me-1"
+[ngClass]="{
+    'btn-primary': region === regionActiva,
+    'btn-outline-primary': region !== regionActiva
+}" 
+(click)="regionSeleccionada(region)"> {{ region | titlecase}} </button>
+
+
+<!-- 
+[Class]=" region === regionActiva ? btn-primary : btn-outline-primary
+[ngClass]="{
+    'btn-primary': region === regionActiva,
+    'btn-outline-primary': region !== regionActiva
+}" 
+[class]="(region === regionActiva) ? 'btn-primary' : 'btn btn-outline-primary'"-->
+
+
+<div *ngIf="hayError" class="alert alert-danger">
+    <p>No se ha presentado un error interno</p>
+</div>
+
+<div *ngIf="listaPaises.length >= 1" class="row">
+    <div class="col">
+        <app-pais-tabla [paises]="listaPaises"></app-pais-tabla>  
+    </div>
+</div>
